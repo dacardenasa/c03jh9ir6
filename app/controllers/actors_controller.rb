@@ -11,23 +11,23 @@ class ActorsController < ApplicationController
   end
 
   def create
-    @alive = ActiveModel::Type::Boolean.new.cast(params[:alive])
+    @alive = ActiveModel::Type::Boolean.new.cast(params[:actor_alive])
     if @alive == true
-      @actor = Actor.new(name: "#{params[:name]}", 
-          bio: "#{params[:bio]}", 
-          birth_date: "#{params[:birthdate]}",
-          birth_place: "#{params[:birthplace]}",
-          image_url: "#{params[:image_url]}",
+      @actor = Actor.new(name: "#{params[:actor_name]}", 
+          bio: "#{params[:actor_bio]}", 
+          birth_date: "#{params[:actor_birthdate]}",
+          birth_place: "#{params[:actor_birthplace]}",
+          image_url: "#{params[:actor_image_url]}",
           alive: @alive)
       else
-      @actor = Actor.new(name: "#{params[:name]}", 
-          bio: "#{params[:bio]}", 
-          birth_date: "#{params[:birthdate]}",
-          birth_place: "#{params[:birthplace]}",
-          image_url: "#{params[:image_url]}",
+      @actor = Actor.new(name: "#{params[:actor_name]}", 
+          bio: "#{params[:actor_bio]}", 
+          birth_date: "#{params[:actor_birthdate]}",
+          birth_place: "#{params[:actor_birthplace]}",
+          image_url: "#{params[:actor_image_url]}",
           alive: @alive,
-          death_date: "#{params[:deathdate]}",
-          death_place: "#{params[:deathplace]}")      
+          death_date: "#{params[:actor_deathdate]}",
+          death_place: "#{params[:actor_deathplace]}")      
     end
 
     if @actor.save
