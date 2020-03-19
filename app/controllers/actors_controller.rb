@@ -11,25 +11,8 @@ class ActorsController < ApplicationController
   end
 
   def create
-    @alive = ActiveModel::Type::Boolean.new.cast(params[:actor_alive])
-    if @alive == true
-      @actor = Actor.new(name: "#{params[:actor_name]}", 
-          bio: "#{params[:actor_bio]}", 
-          birth_date: "#{params[:actor_birthdate]}",
-          birth_place: "#{params[:actor_birthplace]}",
-          image_url: "#{params[:actor_image_url]}",
-          alive: @alive)
-      else
-      @actor = Actor.new(name: "#{params[:actor_name]}", 
-          bio: "#{params[:actor_bio]}", 
-          birth_date: "#{params[:actor_birthdate]}",
-          birth_place: "#{params[:actor_birthplace]}",
-          image_url: "#{params[:actor_image_url]}",
-          alive: @alive,
-          death_date: "#{params[:actor_deathdate]}",
-          death_place: "#{params[:actor_deathplace]}")      
-    end
-
+    @actor = Actor.new(actor_params)
+    
     if @actor.save
       @actores = Actor.all
       render 'layouts/index'
@@ -39,4 +22,10 @@ class ActorsController < ApplicationController
     end
     
   end
+
+  private
+  def actor_params
+    params.require(:actor).permit(:name, :bio, :birth_date, :birth_place, :image_url, :alive, :death_date, :death_place)
+  end
+  
 end

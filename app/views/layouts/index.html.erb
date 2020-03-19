@@ -1,4 +1,4 @@
-  <h1 class="text-center">Listado de Actores</h1>
+  <h1 class="text-center">Actor's List</h1>
   <div class="row">
   <% @actores.each do | actor | %>
     <div class="col-12 col-sm-6 col-lg-4">
@@ -6,7 +6,7 @@
         <div class="card-header text-center">
           <h4><strong><%= actor.name %></strong></h4>
         </div>
-        <img class="card-img-top" src="<%= actor.image_url%>" alt="<%= actor.name %>">
+        <img class="card-img-top img-fluid" src="<%= actor.image_url%>" alt="<%= actor.name %>">
         <div class="card-body">
           <div class="card-title">
             <h4><strong>Biography</strong>
